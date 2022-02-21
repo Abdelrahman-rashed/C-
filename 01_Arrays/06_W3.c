@@ -68,6 +68,25 @@ element - 4 : 6
 Expected Output :
 The Second largest element in the array is : 6
 */
+/*
+* Write a program in C to print the elements of an array in reverse order. Go to the editor
+* Test Data :
+* Input the number of elements to store in the array (max 15) : 5
+* Input 5 number of elements in the array :
+* element - 1 : 2
+* element - 2 : 3
+* element - 3 : 4
+* element - 4 : 5
+* element - 5 : 6
+* Expected Output :
+
+ * The elements of array in reverse order are :                                                                 
+ * element - 5 : 6                                                                                              
+ * element - 4 : 5                                                                                              
+ * element - 3 : 4                                                                                              
+ * element - 2 : 3                                                                                              
+ * element - 1 : 2
+*/
 
 #include "stdio.h"
 #include "stdint.h"
@@ -288,6 +307,44 @@ char arr_sec_largest(unsigned char* ar, unsigned char size)
     return sec_max;
 }
 
+/* !Comment: Function to reverse arrays */
+void reverse_array(unsigned char* ar, unsigned char size)
+{
+    static char u8Itr;
+    static unsigned char rev_arr[10];
+    static unsigned char u8Itr_x = 0x00;
+
+   /* !Comment: Using the second array to copy the data from input array to the local one */
+    for( u8Itr = size -1; u8Itr >= 0; u8Itr--)
+    {
+        rev_arr[u8Itr_x] = ar[u8Itr];
+        u8Itr_x++;
+    }
+    
+    /* !Comment: print the output array */
+    printf("\nThe array after been reversed : ");
+    for(u8Itr = 0x00; u8Itr< size; u8Itr++)
+    {
+        printf(" %d ", rev_arr[u8Itr]);
+    }
+    
+}
+
+/* !Comment: Reverse array without using new array */
+void reverse_array_opt(unsigned char* ar, unsigned char size)
+{
+    char u8Itr;
+    for (u8Itr = 0x00; u8Itr<size/2; u8Itr++)
+    {
+        swap_func(&ar[u8Itr], &ar[size -u8Itr -1]);
+    }
+    /* !Comment: print the output array */
+    printf("\nThe array after been reversed : ");
+    for(u8Itr = 0x00; u8Itr< size; u8Itr++)
+    {
+        printf(" %d ", ar[u8Itr]);
+    }
+}
 int main()
 {
     unsigned char arr[10];
@@ -323,7 +380,14 @@ int main()
     /* !Pseudo: Get the second largest element in the array */
     printf("\nThe second largest element in the array : %d", arr_sec_largest(arr,arrsize));
 
+    /* !Pseudo: Reverse the input array */
+    //reverse_array(arr, arrsize);
+
+    /* !Pseudo: Reverse the input array - optimized */
+    reverse_array_opt(arr, arrsize);
+
     /* !Pseudo: Delete element from the array in the second position */
     del_element(arr, arrsize, (unsigned char)0x01);
+
    
 }
