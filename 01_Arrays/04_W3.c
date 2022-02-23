@@ -56,7 +56,7 @@ int main()
     scanf(" %d",&u8NumSize2);
 
     /*!Intro Message */
-    printf("Input %d elements in the array :", u8NumSize2);
+    printf("\n Input %d elements in the array :", u8NumSize2);
 
     /* !Pseudo: Scanning the array funtion */
     for(u8Itr; u8Itr<(u8NumSize+ u8NumSize2); u8Itr++)
